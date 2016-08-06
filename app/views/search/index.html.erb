@@ -1,0 +1,37 @@
+<div class="site-wrapper">
+
+  <div class="site-wrapper-inner">
+
+    <div class="cover-container">
+
+      <div class="masthead clearfix">
+        <div class="inner">
+          <h3 class="masthead-brand">Anyfare</h3>
+          <nav class="nav nav-masthead">
+            <%= link_to "Home", root_url, class: "nav-link active" %>
+            <%= link_to "Flights", flights_path, class: "nav-link" %>
+            <a class="nav-link" href="#">Destinations</a>
+
+          </nav>
+        </div>
+      </div>
+
+      <div class="inner cover">
+        <h1 class="cover-heading">Anyfare. Anywhere.</h1>
+        <p class="lead">Ready to get away? Anyfare helps you find the best last minute flights to popular getaway destinations. Whether you're looking to relax on the beach or hit the slopes, we'll make finding flights easy and affordable!</p>
+        <p class="lead">
+          <%= link_to raw("<i class='fa fa-plane' aria-hidden='true'></i>&nbsp; Let's go!"), flights_path, class: "btn btn-lg btn-secondary" %>
+        </p>
+      </div>
+
+      <div class="mastfoot">
+        <div class="inner">
+          <p>Concept by  <a href="http://justinwhite.co">Justin White</a> and <a href="https://www.linkedin.com/in/carl-eric-girardin-9392b266">Carl-Eric Girardin</a>.</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

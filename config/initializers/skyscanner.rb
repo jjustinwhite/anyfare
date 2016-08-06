@@ -1,0 +1,1 @@
+Skyscanner::Connection.apikey = ENV["SKYSCANNER_API_KEY"]
