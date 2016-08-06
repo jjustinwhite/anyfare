@@ -1,6 +1,6 @@
 # Anyfare README
 
-Anyfare helps you find great last minute travel deals to many popular getaway destinations. Whether you're looking to go to the beach, or the mountains, Anyfare has you covered. We specialize in finding the cheapest same day and next day airfare for spontaneous getaways!
+Anyfare helps you find great last minute travel deals to many popular getaway destinations. Whether you're looking to go to the beach or the mountains, Anyfare has you covered. We specialize in finding the cheapest same day and next day airfare for spontaneous getaways!
 
 **We use:**
 * [Ruby 2.3.1](https://www.ruby-lang.org)
