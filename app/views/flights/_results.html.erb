@@ -1,13 +1,28 @@
 <h1>Flights from <%= params[:q].upcase %></h1>
+<p>Showing first 50 results.</p>
 <hr />
-
-
-<% @quotes.each do |result| %>
+<% @quotes.first(50).each do |result| %>
   <% place = @places.find {|place| place["PlaceId"] == result["OutboundLeg"]["DestinationId"] } %>
 
-  <strong><%= place["Name"] %></strong> <br />
+  <% if result["MinPrice"].to_i < 300 %>
+    <% price_color = "success" %>
+  <% elsif result["MinPrice"].to_i < 500 %>
+    <% price_color = "warning" %>
+  <% else %>
+    <% price_color = "danger" %>
+  <% end %>
+<div class="col-lg-4 col-sm-6 col-xs-12">
+  <div class="card card-outline-<%= price_color %> " id="location-card">
+    <div class="card-block">
+      <h4 class="card-title"><%= place["Name"] %></h4>
+      <h6 class="card-subtitle text-muted">$<%= result["MinPrice"].to_i %>.00</h6>
+    </div>
+    <%= image_tag "http://placehold.it/350x150", width: "100%",  class: "center-block" %>
+    <div class="card-block">
+      <p class="card-text"><%= result["OutboundLeg"]["DepartureDate"].to_date %></p>
+    </div>
+  </div>
+</div>
 
-  $<%= result["MinPrice"].to_i %>.00 <br />
 
-  <%= result["OutboundLeg"]["DepartureDate"].to_date %> <hr />
 <% end %>

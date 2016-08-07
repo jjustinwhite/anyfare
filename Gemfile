@@ -28,9 +28,13 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# airfare search API
 gem 'skyscanner', :require => 'skyscanner'
+
 gem 'bootstrap', '~> 4.0.0.alpha3.1'
 gem 'font-awesome-sass'
+
+# Stores API and other env variables in .env
 gem 'dotenv-rails', :groups => [:development, :test]
 
 source 'https://rails-assets.org' do

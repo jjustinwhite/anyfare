@@ -1,4 +1,5 @@
 class FlightsController < ApplicationController
+
   def index
     if params[:q] && !params[:q].empty?
       results = Skyscanner::Connection.browse_quotes({ :country => "US",

@@ -22,3 +22,5 @@
 
 #API Keys
 .env
+
+.DS_STORE
