@@ -1,7 +1,17 @@
 <h1>Flights from <%= params[:q].upcase %> to Anywhere</h1>
-<p>Showing first 50 results.</p>
+<p class="pull-left">Showing first 50 results.</p>
 
-<hr />
+<form>
+<div class="btn-group pull-right" data-toggle="buttons">
+  <label class="btn btn-primary">
+    <input type="radio" name="options" id="option1" autocomplete="off" value="money"> <i class="fa fa-money"></i>
+  </label>
+  <label class="btn btn-primary active">
+    <input type="radio" name="options" id="option2" autocomplete="off" value="time" checked> <i class="fa fa-clock-o"></i>
+  </label>
+</div>
+</form>
+
 <% count = 0 %>
 
 <% while count < 50 %>

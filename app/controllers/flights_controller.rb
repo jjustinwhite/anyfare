@@ -7,7 +7,7 @@ class FlightsController < ApplicationController
         :destinationPlace => "anywhere", :outboundPartialDate => "anytime",
         :inboundPartialDate => "anytime" })
 
-      @quotes = results["Quotes"].sort_by {|price| price["MinPrice"]}
+      @quotes = results["Quotes"].sort_by {|price| price["OutboundLeg"]["DepartureDate"]}
       @places = results["Places"]
       @carriers = results["Carriers"]
     end
