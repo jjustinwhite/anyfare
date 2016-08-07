@@ -1,30 +1,43 @@
 <h1>Flights from <%= params[:q].upcase %> to Anywhere</h1>
 <p>Showing first 50 results.</p>
+
 <hr />
-<% @quotes.first(50).each do |result| %>
-  <% place = @places.find {|place| place["PlaceId"] == result["OutboundLeg"]["DestinationId"] } %>
+<% count = 0 %>
 
-  <% if result["MinPrice"].to_i < 300 %>
-    <% price_color = "success" %>
-  <% elsif result["MinPrice"].to_i < 500 %>
-    <% price_color = "warning" %>
-  <% else %>
-    <% price_color = "danger" %>
-  <% end %>
+<% while count < 50 %>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="card-deck">
+        <% @quotes[count,3].each do |result| %>
+          <% place = @places.find {|place| place["PlaceId"] == result["OutboundLeg"]["DestinationId"] } %>
 
-  <div class="col-lg-4 col-sm-6 col-xs-12">
-    <div class="card card-outline-<%= price_color %> " id="location-card">
-      <div class="card-block">
-        <h4 class="card-title"><%= place["CityName"] %></h4>
-        <h6 class="card-subtitle text-muted">$<%= result["MinPrice"].to_i %>.00</h6>
-      </div>
-      <%= image_tag "http://placehold.it/350x150", width: "100%",  class: "center-block" %>
-      <div class="card-block center">
-        <p class="card-text"><%= result["OutboundLeg"]["DepartureDate"].to_date.strftime("%A, %B %d %Y")%></p> <hr />
-        <%= place["Name"] %>
+          <% if result["MinPrice"].to_i < 300 %>
+            <% price_color = "success" %>
+          <% elsif result["MinPrice"].to_i < 500 %>
+            <% price_color = "warning" %>
+          <% else %>
+            <% price_color = "danger" %>
+          <% end %>
+
+          <% response = HTTParty.get("https://maps.googleapis.com/maps/api/place/textsearch/json?query=#{place["CityName"]}+#{place["CountryName"]}&key=#{ENV["GOOGLE_API_KEY"]}").parsed_response %>
+          <% if response["results"].first["photos"] %>
+            <% photo_reference = response["results"].first["photos"].first["photo_reference"] %>
+          <% end %>
+
+          <div class="card card-outline-<%= price_color %>">
+            <%= image_tag "https://maps.googleapis.com/maps/api/place/photo?maxwidth=150&photoreference=#{photo_reference}&key=#{ENV["GOOGLE_API_KEY"]}",  class: "card-img-top"  %>
+            <div class="card-block">
+              <h4 class="card-title"><%= place["CityName"] %></h4>
+              <h6 class="card-subtitle text-muted">$<%= result["MinPrice"].to_i %>.00</h6>
+              <p class="card-text">This flight leaves out of <%= place["Name"] %>.</p>
+              <p class="card-text"><small class="text-muted"><%= result["OutboundLeg"]["DepartureDate"].to_date.strftime("%A, %B %d %Y")%></small></p>
+            </div>
+          </div>
+        <% end %>
+
+        <% count += 3 %>
+
       </div>
     </div>
   </div>
-
-
 <% end %>

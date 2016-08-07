@@ -33,6 +33,7 @@ gem 'skyscanner', :require => 'skyscanner'
 
 gem 'bootstrap', '~> 4.0.0.alpha3.1'
 gem 'font-awesome-sass'
+gem 'httparty'
 
 # Stores API and other env variables in .env
 gem 'dotenv-rails', :groups => [:development, :test]
