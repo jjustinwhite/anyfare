@@ -1,11 +1,9 @@
 class SearchController < ApplicationController
 
   def index
-
-  end
-
-  def create
-
+    if params[:commit]
+      redirect_to flights_path(q: params[:q])
+    end
   end
 
 end

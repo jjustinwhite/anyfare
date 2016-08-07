@@ -13,6 +13,12 @@
   </head>
 
   <body>
-    <%= yield %>
+    <% if request.original_url == search_index_path || root_url %>
+        <%= yield %>
+    <% else %>
+      <div class="container-fluid">
+        <%= yield %>
+      </div>
+    <% end %>
   </body>
 </html>

@@ -1,0 +1,13 @@
+<h1>Flights from <%= params[:q].upcase %></h1>
+<hr />
+
+
+<% @quotes.each do |result| %>
+  <% place = @places.find {|place| place["PlaceId"] == result["OutboundLeg"]["DestinationId"] } %>
+
+  <strong><%= place["Name"] %></strong> <br />
+
+  $<%= result["MinPrice"].to_i %>.00 <br />
+
+  <%= result["OutboundLeg"]["DepartureDate"].to_date %> <hr />
+<% end %>
