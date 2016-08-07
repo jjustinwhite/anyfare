@@ -39,7 +39,7 @@
             <div class="card-block">
               <h4 class="card-title"><%= place["CityName"] %></h4>
               <h6 class="card-subtitle text-muted">$<%= result["MinPrice"].to_i %>.00</h6>
-              <p class="card-text">This flight leaves out of <%= place["Name"] %>.</p>
+              <p class="card-text">This flight arrives into <%= place["Name"] %>.</p>
               <p class="card-text"><small class="text-muted"><%= result["OutboundLeg"]["DepartureDate"].to_date.strftime("%A, %B %d %Y")%></small></p>
             </div>
           </div>
