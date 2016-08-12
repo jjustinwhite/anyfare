@@ -1,17 +1,6 @@
 <h1>Flights from <%= params[:q].upcase %> to Anywhere</h1>
 <p class="pull-left">Showing first 50 results.</p>
 
-<form>
-<div class="btn-group pull-right" data-toggle="buttons">
-  <label class="btn btn-primary">
-    <input type="radio" name="options" id="option1" autocomplete="off" value="money"> <i class="fa fa-money"></i>
-  </label>
-  <label class="btn btn-primary active">
-    <input type="radio" name="options" id="option2" autocomplete="off" value="time" checked> <i class="fa fa-clock-o"></i>
-  </label>
-</div>
-</form>
-
 <% count = 0 %>
 
 <% while count < 50 %>
@@ -29,13 +18,8 @@
             <% price_color = "danger" %>
           <% end %>
 
-          <% response = HTTParty.get("https://maps.googleapis.com/maps/api/place/textsearch/json?query=#{place["CityName"]}+#{place["CountryName"]}&key=#{ENV["GOOGLE_API_KEY"]}").parsed_response %>
-          <% if response["results"].first["photos"] %>
-            <% photo_reference = response["results"].first["photos"].first["photo_reference"] %>
-          <% end %>
-
           <div class="card card-outline-<%= price_color %>">
-            <%= image_tag "https://maps.googleapis.com/maps/api/place/photo?maxwidth=150&photoreference=#{photo_reference}&key=#{ENV["GOOGLE_API_KEY"]}",  class: "card-img-top"  %>
+            <%= image_tag "https://placehold.it/150x100",  class: "card-img-top"  %>
             <div class="card-block">
               <h4 class="card-title"><%= place["CityName"] %></h4>
               <h6 class="card-subtitle text-muted">$<%= result["MinPrice"].to_i %>.00</h6>

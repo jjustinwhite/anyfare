@@ -23,6 +23,13 @@
         </p>
       </div>
 
+      <% get_airport_data %>
+
+      <%= javascript_tag do %>
+        var airport_data = $.parseJSON('<%=j @airport_data.to_json.html_safe %>');
+      <% end %>
+
+
       <div class="mastfoot">
         <div class="inner">
           <p>Concept by  <a href="http://justinwhite.co">Justin White</a> and <a href="https://www.linkedin.com/in/carl-eric-girardin-9392b266">Carl-Eric Girardin</a>.</p>

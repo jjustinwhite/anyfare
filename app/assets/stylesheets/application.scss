@@ -4,6 +4,8 @@
 @import "cover";
 @import "custom";
 @import "flights";
+@import "jquery_ui";
+
 
 
 html,
@@ -19,4 +21,20 @@ body {
   display: block;
   margin-right: auto;
   margin-left: auto;
+}
+
+
+.ui-autocomplete-category {
+  font-weight: bold;
+}
+
+.ui-autocomplete {
+  max-height: 300px;
+  overflow-y: auto;
+  /* prevent horizontal scrollbar */
+  overflow-x: hidden;
+}
+
+.ui-state-focus {
+  background-color: #f7f7f7 !important;
 }
