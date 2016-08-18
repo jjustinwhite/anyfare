@@ -1,4 +1,4 @@
-<h1>Flights from <%= params[:q].upcase %> to Anywhere</h1>
+<h1>Flights from <%= params[:q].upcase %> to USA This Month</h1>
 <p class="pull-left">Showing first 50 results.</p>
 
 <% count = 0 %>
@@ -9,6 +9,7 @@
       <div class="card-deck">
         <% @quotes[count,3].each do |result| %>
           <% place = @places.find {|place| place["PlaceId"] == result["OutboundLeg"]["DestinationId"] } %>
+          <% in_flight = @carriers.find {|carrier| carrier["CarrierId"] == result["OutboundLeg"]["CarrierIds"].first } %>
 
           <% if result["MinPrice"].to_i < 300 %>
             <% price_color = "success" %>
@@ -21,10 +22,16 @@
           <div class="card card-outline-<%= price_color %>">
             <%= image_tag "https://placehold.it/150x100",  class: "card-img-top"  %>
             <div class="card-block">
+
               <h4 class="card-title"><%= place["CityName"] %></h4>
-              <h6 class="card-subtitle text-muted">$<%= result["MinPrice"].to_i %>.00</h6>
+              <h6 class="card-subtitle text-<%= price_color %>">$<%= result["MinPrice"].to_i %>.00</h6>
+              <p class="card-text"><%= in_flight["Name"] %></p>
+
               <p class="card-text">This flight arrives into <%= place["Name"] %>.</p>
-              <p class="card-text"><small class="text-muted"><%= result["OutboundLeg"]["DepartureDate"].to_date.strftime("%A, %B %d %Y")%></small></p>
+
+              <p class="card-text">
+                <small class="text-muted"><strong>Depart: </strong><%= result["OutboundLeg"]["DepartureDate"].to_date.strftime("%A, %B %d %Y")%></small> <br />
+                <small class="text-muted"><strong>Return: </strong><%= result["InboundLeg"]["DepartureDate"].to_date.strftime("%A, %B %d %Y")%></small></p>
             </div>
           </div>
         <% end %>

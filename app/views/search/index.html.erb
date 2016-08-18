@@ -23,12 +23,9 @@
         </p>
       </div>
 
-      <% get_airport_data %>
-
-      <%= javascript_tag do %>
-        var airport_data = $.parseJSON('<%=j @airport_data.to_json.html_safe %>');
-      <% end %>
-
+      <div class="row">
+        <%= render "buckets" %>
+      </div>
 
       <div class="mastfoot">
         <div class="inner">
@@ -41,3 +38,12 @@
   </div>
 
 </div>
+
+
+
+
+<% get_airport_data %>
+
+<%= javascript_tag do %>
+  var airport_data = $.parseJSON('<%=j @airport_data.to_json.html_safe %>');
+<% end %>
