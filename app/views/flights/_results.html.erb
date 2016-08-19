@@ -1,44 +1,46 @@
-<h1 class="center">Flights from <%= params[:q].upcase %> to USA This Month</h1>
-<p class="pull-left">Showing first 50 results.</p>
+ <div id="flight_results">
+  <h1 class="center">Flights from <%= params[:q].upcase %> to USA This Month</h1>
+  <p class="pull-left">Showing first 50 results.</p>
 
-<% count = 0 %>
+  <% count = 0 %>
 
-<% while count < 50 %>
-  <div class="container-fluid">
-    <div class="row">
-      <div class="card-deck">
-        <% @quotes[count,3].each do |result| %>
-          <% place = @places.find {|place| place["PlaceId"] == result["OutboundLeg"]["DestinationId"] } %>
-          <% in_flight = @carriers.find {|carrier| carrier["CarrierId"] == result["OutboundLeg"]["CarrierIds"].first } %>
+  <% while count < 50 %>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="card-deck">
+          <% @quotes[count,3].each do |result| %>
+            <% place = @places.find {|place| place["PlaceId"] == result["OutboundLeg"]["DestinationId"] } %>
+            <% in_flight = @carriers.find {|carrier| carrier["CarrierId"] == result["OutboundLeg"]["CarrierIds"].first } %>
 
-          <% if result["MinPrice"].to_i < 300 %>
-            <% price_color = "success" %>
-          <% elsif result["MinPrice"].to_i < 500 %>
-            <% price_color = "warning" %>
-          <% else %>
-            <% price_color = "danger" %>
+            <% if result["MinPrice"].to_i < 300 %>
+              <% price_color = "success" %>
+            <% elsif result["MinPrice"].to_i < 500 %>
+              <% price_color = "warning" %>
+            <% else %>
+              <% price_color = "danger" %>
+            <% end %>
+
+            <div class="card card-outline-<%= price_color %>">
+              <%= image_tag "https://placehold.it/150x100",  class: "card-img-top"  %>
+              <div class="card-block">
+
+                <h4 class="card-title"><%= place["CityName"] %></h4>
+                <h6 class="card-subtitle text-<%= price_color %>">$<%= result["MinPrice"].to_i %>.00</h6>
+                <p class="card-text"><%= in_flight["Name"] %></p>
+
+                <p class="card-text">This flight arrives into <%= place["Name"] %>.</p>
+
+                <p class="card-text">
+                  <small class="text-muted"><strong>Depart: </strong><%= result["OutboundLeg"]["DepartureDate"].to_date.strftime("%A, %B %d %Y")%></small> <br />
+                  <small class="text-muted"><strong>Return: </strong><%= result["InboundLeg"]["DepartureDate"].to_date.strftime("%A, %B %d %Y")%></small></p>
+              </div>
+            </div>
           <% end %>
 
-          <div class="card card-outline-<%= price_color %>">
-            <%= image_tag "https://placehold.it/150x100",  class: "card-img-top"  %>
-            <div class="card-block">
+          <% count += 3 %>
 
-              <h4 class="card-title"><%= place["CityName"] %></h4>
-              <h6 class="card-subtitle text-<%= price_color %>">$<%= result["MinPrice"].to_i %>.00</h6>
-              <p class="card-text"><%= in_flight["Name"] %></p>
-
-              <p class="card-text">This flight arrives into <%= place["Name"] %>.</p>
-
-              <p class="card-text">
-                <small class="text-muted"><strong>Depart: </strong><%= result["OutboundLeg"]["DepartureDate"].to_date.strftime("%A, %B %d %Y")%></small> <br />
-                <small class="text-muted"><strong>Return: </strong><%= result["InboundLeg"]["DepartureDate"].to_date.strftime("%A, %B %d %Y")%></small></p>
-            </div>
-          </div>
-        <% end %>
-
-        <% count += 3 %>
-
+        </div>
       </div>
     </div>
-  </div>
-<% end %>
+  <% end %>
+</div>
