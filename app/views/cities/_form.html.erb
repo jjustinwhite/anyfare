@@ -1,0 +1,12 @@
+<%= form_for(@city) do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name, class: "form-control" %>
+
+  <%= f.label :country %>
+  <%= f.text_field :country, class: "form-control" %>
+
+  <%= f.label :image_url %>
+  <%= f.text_field :image_url, class: "form-control" %>
+
+  <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+<% end %>

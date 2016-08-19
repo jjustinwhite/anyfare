@@ -1,0 +1,20 @@
+<h1 class="center">Cities</h1>
+
+<div class="container-fluid" id="buckets">
+  <div class="row">
+    <div class="card-deck">
+
+    <% @cities.each do |city| %>
+      <div class="card">
+        <%= link_to (image_tag city.image_url,  class: "card-img-top"), city  %>
+        <div class="card-block">
+          <h4 class="card-title"><%= link_to city.name, city %></h4>
+          <p class="card-subtitle"><%= link_to "Edit", edit_city_path(city) %></p>
+        </div>
+      </div>
+    <% end %>
+
+
+    </div>
+  </div>
+</div>
