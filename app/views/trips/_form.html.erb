@@ -1,0 +1,12 @@
+<%= form_for(@trip) do |f| %>
+
+  <%= f.label :city %>
+  <%= f.select :city_id, City.all.collect{|city| [city.name, city.id]}, class: "form-control" %> <br />
+
+  <%= f.label :bucket %>
+  <%= f.select :bucket_id, Bucket.all.collect{|bucket| [bucket.name, bucket.id]}, class: "form-control" %>
+
+  <br />
+
+  <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+<% end %>

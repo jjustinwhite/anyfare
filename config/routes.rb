@@ -7,4 +7,5 @@ Rails.application.routes.draw do
   resources :flights
   resources :buckets
   resources :cities
+  resources :trips
 end

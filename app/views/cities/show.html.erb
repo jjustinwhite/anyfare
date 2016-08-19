@@ -1,3 +1,24 @@
 <h1 class="center"><%= @city.name %></h1>
 
-<%= @city.inspect %>
+
+<div class="container" id="buckets">
+  <div class="row">
+    <div class="card-deck">
+      <div class="card">
+        <%= link_to (image_tag @city.image_url,  class: "card-img-top"), @city  %>
+        <div class="card-block">
+          <h4 class="card-title"><%= link_to @city.name, @city %></h4>
+
+          <p class="card-text"><strong><%= "Bucket".pluralize(@city.buckets.count) %>:</strong>
+            <% @city.buckets.each do |bucket| %>
+              <%= link_to bucket.name, bucket %>
+            <% end %>
+          </p>
+
+
+          <p class="card-subtitle"><%= link_to "Edit", edit_city_path(@city) %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

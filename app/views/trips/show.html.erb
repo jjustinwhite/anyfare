@@ -1,0 +1,6 @@
+<h1 class="center">Trip ID: <%= @trip.id %></h1>
+
+<strong>Bucket:</strong> <%= Bucket.find(@trip.bucket_id).name %> <br />
+<strong>City:</strong> <%= City.find(@trip.city_id).name %> <br />
+
+<%= link_to "Edit", edit_trip_path(@trip) %>

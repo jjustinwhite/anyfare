@@ -46,7 +46,7 @@ class CitiesController < ApplicationController
     private
 
       def city_params
-        params.require(:city).permit(:name, :country, :image_url)
+        params.require(:city).permit(:name, :country, :image_url, :bucket_id)
       end
 
 end

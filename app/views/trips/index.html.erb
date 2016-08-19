@@ -1,0 +1,20 @@
+<h1 class="center">Trips</h1>
+
+<div class="container-fluid" id="buckets">
+  <div class="row">
+    <div class="card-deck">
+
+    <% @trips.each do |trip| %>
+      <div class="card">
+        <%= link_to (image_tag "placehold.it/350x350",  class: "card-img-top"), trip  %>
+        <div class="card-block">
+          <h4 class="card-title"><%= link_to trip.id, trip %></h4>
+          <p class="card-subtitle"><%= link_to "Edit", edit_trip_path(trip) %></p>
+        </div>
+      </div>
+    <% end %>
+
+
+    </div>
+  </div>
+</div>
